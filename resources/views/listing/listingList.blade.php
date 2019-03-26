@@ -39,10 +39,10 @@
 							{{$list->title}}
 						</td>
 						<td>
-							{{$list->house}} {{$list->listing_area_id}} {{$list->sector_id}} {{$list->city_id}}
+							{{$list->house}} {{$list->area->area_name}} {{$list->sector_id}} {{$list->city_id}}
 						</td>
 						<td>
-							{{$list->user_id}}
+							{{$list->user->first_name}} {{$list->user->last_name	}}
 						</td>
 						<td>
 							@if($list->status == "active")
