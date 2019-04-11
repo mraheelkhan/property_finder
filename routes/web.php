@@ -75,3 +75,11 @@ Route::get('/listings', 'ListingController@listinglist')->name('ListingList')->m
 //profile 
 Route::get('/profile', 'ProfileController@user_profile')->name('Profile')->middleware('auth');
 Route::post('/profile/update', 'ProfileController@user_profile_update')->name('ProfileUpdate')->middleware('auth');
+
+// Service Provider routes
+Route::get('/services', 'ServiceProviderController@services')->name('ServiceProviderServices')->middleware('auth');
+Route::get('/service/update/{sp}/{service_id}/{status}/', 'ServiceProviderController@toggle')->name('ServiceProviderServices')->middleware('auth');
+
+//  AJAX routes 
+Route::get('/city/getsectorslist/{id}', 'CityController@getSectorsListByCityId')->name('GetSectorsList')->middleware('auth');
+

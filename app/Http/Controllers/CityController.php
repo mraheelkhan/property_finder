@@ -96,4 +96,10 @@ class CityController extends Controller
         
     }
 
+    public function getSectorsListByCityId($id){
+        $sectors = Sector::where('city_id', $id)->get();
+        json_encode($sectors);
+        return response()->json($sectors);
+    }
+
 }

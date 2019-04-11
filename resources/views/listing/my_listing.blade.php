@@ -32,8 +32,8 @@
 			<div class="row">
 				<div class="col">
 					<div class="section_title_container text-center">
-						<div class="section_subtitle">The best deals</div>
-						<div class="section_title"><h1>Featured Properties</h1></div>
+						{{-- <div class="section_subtitle">The best deals</div>
+						<div class="section_title"><h1>Featured Properties</h1></div> --}}
 						@if(Session::has('message'))
 							<p class="alert alert-success">{!! Session::get('message') !!}</p>
 						@endif
@@ -56,7 +56,7 @@
 								<div class="tag tag_house"><a href="#">house</a></div>
 								<div class="tag tag_sale"><a href="#">for sale</a></div>
 							</div>
-							<div class="tag_price listing_price">PKR {{$data->price}}</div>
+							<div class="tag_price listing_price">PKR {{number_format($data->price)}}</div>
 						</div>
 						<div class="listing_content">
 							<div class="prop_location listing_location d-flex flex-row align-items-start justify-content-start">

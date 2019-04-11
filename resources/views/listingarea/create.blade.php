@@ -37,22 +37,23 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-					<select name="sector_name" class="form-control" id="sector_id">
-							<option disabled selected>Select Sector</option>
-							@foreach($sectors as $sector)
-								<option value="{{$sector->id}}">{{$sector->sector_name}}</option>
-							@endforeach
-						</select>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-					<select name="city_id" class="form-control" id="city_id">
+					<select name="city_id" class="form-control" id="city_id" onchange="getSectorsforCity()">
 						<option disabled selected>Select City</option>
 						@foreach($cities as $city)
 							<option value="{{$city->id}}">{{$city->city_name}}</option>
 						@endforeach
 					</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+					<select name="sector_name" class="form-control" id="sector_id">
+							<option disabled selected>Select Sector</option>
+
+							{{-- @foreach($sectors as $sector)
+								<option value="{{$sector->id}}">{{$sector->sector_name}}</option>
+							@endforeach --}}
+						</select>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -141,6 +142,27 @@
 		</div>
 	  </div>
 <script>
-				
+				function getSectorsforCity(){
+        var city_id = $('#city_id').val();
+				route_url = " {{ url('/city/getsectorslist') }}/" + city_id + "";
+				console.log(city_id);
+            $.ajax({
+                url: route_url,
+                method: "GET",
+                dataType: "json",
+                success:
+                function(data)
+                { 
+									
+                  var html='';
+                  html +='<option value="" disabled selected>Select Sector</option>';
+                  $.each(data, function(index, value) {
+                    html += '<option value="'+value.id+'">'+value.sector_name+'</option>';             
+                  });
+									console.log(data);
+                  $('#sector_id').html(html);    
+                }
+            });
+      }
 </script>
 @endsection

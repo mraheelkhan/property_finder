@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use Gate;
+use Session;
 class ProfileController extends Controller
 {
     public function dashboard(){

@@ -63,7 +63,7 @@
                 </li>
                 @if(Auth::check())
                     <li class="@if(Request::route()->getName() == 'Dashboard') active @endif">
-                        <a href="{{ url('/profile') }}">Profile</a>
+                        <a href="@if(Auth::user()->role == 'sp') {{ url('/services') }} @else {{ url('/profile') }}@endif"> Profile</a>
                     </li>
                     <li><a href="{{ route('logout') }}">Logout</a></li>
                 @endif
