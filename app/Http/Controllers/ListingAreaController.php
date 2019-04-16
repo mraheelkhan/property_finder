@@ -10,6 +10,7 @@ use App\User;
 use App\City;
 use App\Sector;
 use App\ListingArea;
+use App\Listing;
 
 class ListingAreaController extends Controller
 {
@@ -69,9 +70,16 @@ class ListingAreaController extends Controller
         $user = User::class;
         if(Gate::allows('onlyAdmin', $user)){
             $area = ListingArea::findorFail($id);
+            $listing = Listing::where('listing_area_id', $id)->count();
+            if($listing <= 0){
                 $area->delete();
                 Session::flash('message', 'Area deleted. <script>swal.fire("success","Delete","Area Deleted");</script>'); 
                 return redirect('/area/create');
+                
+            } 
+            Session::flash('error', 'Sector cannot deleted.  because it has other records. <script>swal.fire("Cannot","Sector Cannot Deleted because it has other records.","error");</script>'); 
+            return redirect('/area/create');
+               
         } else{
             return view('forbidden');
         }

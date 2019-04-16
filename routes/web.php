@@ -80,6 +80,13 @@ Route::post('/profile/update', 'ProfileController@user_profile_update')->name('P
 Route::get('/services', 'ServiceProviderController@services')->name('ServiceProviderServices')->middleware('auth');
 Route::get('/service/update/{sp}/{service_id}/{status}/', 'ServiceProviderController@toggle')->name('ServiceProviderServices')->middleware('auth');
 
+// Admin user panel routes
+Route::get('/admin/users', 'AdminController@index')->name('AdminUsers')->middleware('auth');
+Route::post('/admin/users/add', 'AdminController@create')->name('AddNewUser')->middleware('auth');
+Route::get('/admin/users/activate/{id}', 'AdminController@activate')->name('AdminActivate')->middleware('auth');
+Route::get('/admin/users/deactivate/{id}', 'AdminController@deactivate')->name('AdminDeactivate')->middleware('auth');
+Route::get('/admin/users/delete/{id}', 'AdminController@delete')->name('AdminDelete')->middleware('auth');
+
 //  AJAX routes 
 Route::get('/city/getsectorslist/{id}', 'CityController@getSectorsListByCityId')->name('GetSectorsList')->middleware('auth');
 

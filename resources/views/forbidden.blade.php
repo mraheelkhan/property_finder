@@ -100,7 +100,11 @@ document.addEventListener("touchmove", touchHandler => {
             </g>
           </svg>
 <h1 style="color: red;">You don't have access to this page</h1>
+        @if(Auth::user()->role == 'admin')
+        <h2>Go <a href="{{url('/dashboard')}}">Home</a></h2>
+        @else
         <h2>Go <a href="{{url('/')}}">Home!</a></h2>
+        @endif
 
 </body>
 </html>

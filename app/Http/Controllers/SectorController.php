@@ -9,6 +9,7 @@ use Session;
 use App\City;
 use App\User;
 use App\Sector;
+use App\ListingArea;
 
 class SectorController extends Controller
 {
@@ -64,10 +65,17 @@ class SectorController extends Controller
     public function delete($id){
         $user = User::class;
         if(Gate::allows('onlyAdmin', $user)){
-            $area = Sector::findorFail($id);
-                $area->delete();
+            $sector = Sector::findorFail($id);
+            $areas = ListingArea::where('sector_name', $id)->count();
+            if($areas <= 0){
+                $sector->delete();
                 Session::flash('message', 'Sector deleted. <script>swal.fire("success","Delete","Sector Deleted");</script>'); 
                 return redirect('/sector/create');
+                
+            } 
+            Session::flash('error', 'Sector cannot deleted.  because it has other records. <script>swal.fire("Cannot","Sector Cannot Deleted because it has other records.","error");</script>'); 
+             return redirect('/sector/create');
+                
         } else{
             return view('forbidden');
         }
@@ -76,9 +84,9 @@ class SectorController extends Controller
     public function activate($id){
         $user = User::class;
         if(Gate::allows('onlyAdmin', $user)){
-                $area = Sector::findorFail($id);
-                $area->status = "active";
-                $area->update();
+                $sector = Sector::findorFail($id);
+                $sector->status = "active";
+                $sector->update();
                 Session::flash('message', 'Sector Activated. <script>swal.fire("success","Activated","Sector Activated");</script>'); 
                 return redirect('/sector/create');
         } else{
@@ -89,9 +97,9 @@ class SectorController extends Controller
     public function deactivate($id){
         $user = User::class;
         if(Gate::allows('onlyAdmin', $user)){
-            $area = Sector::findorFail($id);
-            $area->status = "inactive";
-            $area->update();
+            $sector = Sector::findorFail($id);
+            $sector->status = "inactive";
+            $sector->update();
                 Session::flash('message', 'Sector Deactivated. <script>swal.fire("success","Deactivated","Sector Deactivated");</script>'); 
                 return redirect('/sector/create');
         } else{

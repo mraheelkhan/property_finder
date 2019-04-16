@@ -36,14 +36,15 @@ class CityController extends Controller
     public function store(Request $request){
         $userId = Auth::user()->id;
         $validated = $request->validate([   
-            "city_name" => 'required|max:200',
+            "city_name" => 'required|max:200|unique:cities',
             "status" => 'required|max:50',
             ]);
             
-        City::create([
+        $city = City::create([
             'city_name' => request('city_name'),
             'status' => request('status')
         ]);
+        
         Session::flash('message', 'Your new City is added successfully. <script>swal.firePP("success","Added","Your City is Added Successfully");</script>'); 
         return redirect('/city/create');
     }
@@ -61,9 +62,16 @@ class CityController extends Controller
         $user = User::class;
         if(Gate::allows('onlyAdmin', $user)){
             $city = City::findorFail($id);
+            $sectors = Sector::where('city_id', $id)->count();
+            if($sectors <= 0){
                 $city->delete();
                 Session::flash('message', 'Sector deleted. <script>swal.fire("success","Delete","Sector Deleted");</script>'); 
-                return redirect('/sector/create');
+                return redirect('/city/create');
+                
+            } 
+            Session::flash('error', 'Sector cannot deleted.  because it has other records. <script>swal.fire("Cannot","Sector Cannot Deleted because it has other records.","error");</script>'); 
+             return redirect('/city/create');
+                
         } else{
             return view('forbidden');
         }

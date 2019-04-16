@@ -42,7 +42,7 @@
 								<div class="tag tag_house"><a href="#">house</a></div>
 							<div class="tag tag_sale"><a href="#">for {{$data['type']}}</a></div>
 							</div>
-							<div class="tag_price listing_price">PKR {{$data->price}}</div>
+							<div class="tag_price listing_price">PKR {{number_format($data->price)}}</div>
 						</div>
 						<div class="listing_content">
 								<div class="prop_location listing_location d-flex flex-row align-items-start justify-content-start">
@@ -108,7 +108,7 @@
 							<div class="hot_image">
 								<a href="{{route('SubmitShow', $data->id)}}">
 									<div class="background_image" style="background-image:url({{ asset('images/'.$data->featured_image) }})"></div>
-									<div class="tag_price">PKR {{$data->price}}</div>
+									<div class="tag_price">PKR {{number_format($data->price)}}</div>
 								</a>
 									<div class="tags tags_custom d-flex flex-row align-items-start justify-content-start flex-wrap">
 									<div class="tag tag_house"><a href="{{route('SubmitShow', $data->id)}}">house</a></div>

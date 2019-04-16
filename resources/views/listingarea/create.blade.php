@@ -4,9 +4,11 @@
 @endsection
 @section('content')
 <div class="col-md-12">
-@if(Session::has('message'))
+	@if(Session::has('message'))
 	<p class="alert alert-success">{!! Session::get('message') !!}</p>
-@endif
+	@elseif(Session::has('error'))
+	<p class="alert alert-danger">{!! Session::get('error') !!}</p>
+	@endif
 @if (count($errors) > 0)
 <div class="alert alert-danger">
         <ul>
@@ -111,10 +113,10 @@
 					  {{$area->area_name}}
 					</td>
 					<td>
-						{{$area->sector_name}}
+						{{$area->sector->sector_name}}
 					</td>
 					<td>
-						{{$area->city_id}}
+						{{$area->city->city_name}}
 					</td>
 					<td>
 						@if($area->status == "active")

@@ -79,6 +79,13 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+.checkbox{background-color:#fff;display:inline-block;height:28px;width:28px;border-radius:4px;border:1px solid #ccc;}
+  .checkbox span{display:block;height:28px;position:relative;width:28px;padding:0}
+  .checkbox span:after{-moz-transform:scaleX(-1) rotate(135deg);-ms-transform:scaleX(-1) rotate(135deg);-webkit-transform:scaleX(-1) rotate(135deg);transform:scaleX(-1) rotate(135deg);-moz-transform-origin:left top;-ms-transform-origin:left top;-webkit-transform-origin:left top;transform-origin:left top;border-right:4px solid #fff;border-top:4px solid #fff;content:'';display:block;height:20px;left:3px;position:absolute;top:15px;width:10px}
+  .checkbox span:hover:after{border-color:#999}
+  .checkbox input{display:none}
+  .checkbox input:checked + span:after{-webkit-animation:check .8s;-moz-animation:check .8s;-o-animation:check .8s;animation:check .8s;border-color:#555}
+.checkbox input:checked + .primary:after{border-color:#2196F3}
 </style>
 <div class="col-md-12">
 @if(Session::has('message'))
@@ -157,8 +164,141 @@ input:checked + .slider:before {
                    
                   </div>
                 </div>
+                <div class="col-md-12 mt-5 mb-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4> Select Your Services </h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>#</strong></td>
+                                        <td><strong>Service Name</strong></td>
+                                        <td><strong>Action</strong></td>
+                                    </tr>
 
-    <div class="col-md-12 mt-5">
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Electrical Systems</td>
+                                        <td> 
+                                            <div class="checkbox">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="1" name="electrical_systems" />
+                                                    <span class="primary"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Concrete</td>
+                                        <td> 
+                                            <div class="checkbox">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="1" name="concrete" />
+                                                    <span class="primary"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Steel Frames</td>
+                                        <td> 
+                                            <div class="checkbox">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="1" name="steel_frames" />
+                                                    <span class="primary"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Ceiling</td>
+                                        <td> 
+                                            <div class="checkbox">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="1" name="ceiling" />
+                                                    <span class="primary"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Masonry</td>
+                                        <td> 
+                                            <div class="checkbox">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="1" name="masonry" />
+                                                    <span class="primary"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Plumbing</td>
+                                        <td> 
+                                            <div class="checkbox">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="1" name="plumbing" />
+                                                    <span class="primary"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>Windows</td>
+                                        <td> 
+                                            <div class="checkbox">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="1" name="windows" />
+                                                    <span class="primary"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Labours</td>
+                                        <td> 
+                                            <div class="checkbox">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="1" name="labour" />
+                                                    <span class="primary"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>Transport</td>
+                                        <td> 
+                                            <div class="checkbox">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" value="1" name="transport" />
+                                                    <span class="primary"></span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+                    
+        @if($data)
+        <div class="col-md-12 mt-5">
             <div class="card">
                     <div class="card-header card-header-primary">
                       <h4 class="card-title text-center">Select Your Services</h4>
@@ -271,11 +411,12 @@ input:checked + .slider:before {
             </div>
         </div>
               </div>
+            @endif
 </div>
 
 
 
-
+@if($data)
 <script>
 
     function update_service_ajax(service_id, value){
@@ -405,4 +546,5 @@ input:checked + .slider:before {
 
 
 </script>
+@endif
 @endsection

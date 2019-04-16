@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use Session;
 class LoginController extends Controller
 {
     /*
@@ -30,7 +31,13 @@ class LoginController extends Controller
         
         // User role
         $role = Auth::user()->role; 
-        
+        $status = Auth::user()->status;
+
+        if($status != 'active'){
+            Auth::logout();
+            Session::flash('message', '<script>swal.fire("Your not Authorize","Your Account is not yet Activated, Please contact your Administrator","error");</script>'); 
+            return '/'; 
+        }
         // Check user role
         switch ($role) {
             case 'admin':

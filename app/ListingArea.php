@@ -13,4 +13,7 @@ class ListingArea extends Model
     public function sector(){
         return $this->belongsTo('App\Sector', 'sector_name', 'id')->withDefault();
     }
+    public function city(){
+        return $this->belongsTo(City::class)->withDefault();
+    }
 }

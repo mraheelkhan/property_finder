@@ -48,6 +48,12 @@
             <p>User Profile</p>
           </a>
         </li>
+        <li class="nav-item @if(Request::route()->getName() == 'AdminUsers') active @endif ">
+          <a class="nav-link" href="{{route('AdminUsers')}}">
+            <i class="material-icons">people</i>
+            <p>Manage Users</p>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
