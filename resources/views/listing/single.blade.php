@@ -315,6 +315,25 @@
 	height: calc(100% + 30px);
 }
 
+
+/* comment section custom css code  */
+
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
+}
+.comment-wrapper .media-list .media .img-circle{
+	border-radius: 50%;
+}
+.comment-wrapper .media-list .media .media-body{
+	margin: 1px 20px;
+}
 </style>
 	
 
@@ -356,7 +375,7 @@
 									</div>
 									<div class="prop_agent d-flex flex-row align-items-center justify-content-start">
 										<div class="prop_agent_image"><img src="images/agent_1.jpg" alt=""></div>
-										<div class="prop_agent_name"><a href="#">Posted By: {{$data->user->first_name}} {{$data->user->last_name}}</div>
+										<div class="prop_agent_name"><a href="#">Posted By: {{$data->user->first_name}} {{$data->user->last_name}}</a></div>
 									</div>
 									<div class="prop_info">
 										<ul class="d-flex flex-row align-items-center justify-content-start flex-wrap">
@@ -433,8 +452,71 @@
 					
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12">
+					{{-- comment section code started here  --}}
+	<div class="mt-5 mb-5">
+		<div class="col-md-8 col-md-offset-2 col-sm-12">
+			<div class="comment-wrapper">
+				<div class="card card-info">
+					<div class="card-header">
+						Comment Section
+						@if(Session::has('message'))
+							<p class="alert alert-success">{!! Session::get('message') !!}</p>
+						@endif
+						@if ($errors->any())
+	                    <div class="alert alert-danger">
+	                        <ul>
+	                            @foreach ($errors->all() as $error)
+	                                <li>{{ $error }}</li>
+	                            @endforeach
+	                        </ul>
+	                    </div>
+	                  	@endif	
+					</div>
+					<div class="card-body">
+					<form class="" action="{{ route('PostComment') }}" method="post">
+						@csrf
+						<input type="hidden" name="listing_id" value=" {{ $data['id'] }} "/>
+							<textarea name="comment_body" class="form-control" placeholder="write a comment..." rows="3"></textarea>
+							<br>
+							<button type="submit" class="btn btn-info pull-right">Post</button>
+						</form>
+						<div class="clearfix"></div>
+						<hr>
+						<ul class="media-list">
+							<small class="mt-2 mb-2">Latest Comments First</></small>
+							@foreach($comments as $comment)
+							
+							<li class="media">
+								<a href="#" class="pull-left">
+									<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+								</a>
+								<div class="media-body">
+									<span class="text-muted pull-right">
+										<small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+									</span>
+								<strong class="text-success">{{ $comment->user->first_name ." " . $comment->user->last_name }} | {{ "@" . $comment->user->username }}</strong>
+									<p>
+										{{ $comment->comment_body }}
+									</p>
+								</div>
+							</li>
+							@endforeach
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+	{{-- comment section end here --}}
+				</div>
+			</div>
 		</div>
 	</div>
 
+	
 
 @endsection

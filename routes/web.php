@@ -87,6 +87,9 @@ Route::get('/admin/users/activate/{id}', 'AdminController@activate')->name('Admi
 Route::get('/admin/users/deactivate/{id}', 'AdminController@deactivate')->name('AdminDeactivate')->middleware('auth');
 Route::get('/admin/users/delete/{id}', 'AdminController@delete')->name('AdminDelete')->middleware('auth');
 
+// Comment routes
+Route::post('/postcomment', 'CommentController@store')->name('PostComment')->middleware('auth');
+
 //  AJAX routes 
 Route::get('/city/getsectorslist/{id}', 'CityController@getSectorsListByCityId')->name('GetSectorsList')->middleware('auth');
 

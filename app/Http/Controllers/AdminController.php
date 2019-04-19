@@ -69,7 +69,7 @@ class AdminController extends Controller
             'status' => $data['status'],
             'password' => Hash::make($data['password']),
         ]);
-        if( $newAddedUser->role = 'sp' ){
+        if( $newAddedUser->role == 'sp' ){
             $sp = ServiceProvider::create([
                 'user_id' => $newAddedUser->id,
                 'electrical_systems' => '0',

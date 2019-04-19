@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Listing;
 use App\ListingArea;
+use App\Comment;
 use Auth;
 use Session;
 use Gate;
@@ -91,7 +92,9 @@ class ListingController extends Controller
     // show single listing 
     public function show($id){
         $listing = Listing::findorFail($id);
-        return view('listing.single')->with('data', $listing);
+        $comments = Comment::where('listing_id', $id)->with('user')->where('status', 'active')->get();
+        
+        return view('listing.single')->with('data', $listing)->with('comments', $comments);
     }
 
     // editing page listing 

@@ -164,138 +164,7 @@ input:checked + .slider:before {
                    
                   </div>
                 </div>
-                <div class="col-md-12 mt-5 mb-5">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4> Select Your Services </h4>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-striped">
-                                <tbody>
-                                    <tr>
-                                        <td><strong>#</strong></td>
-                                        <td><strong>Service Name</strong></td>
-                                        <td><strong>Action</strong></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Electrical Systems</td>
-                                        <td> 
-                                            <div class="checkbox">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" value="1" name="electrical_systems" />
-                                                    <span class="primary"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Concrete</td>
-                                        <td> 
-                                            <div class="checkbox">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" value="1" name="concrete" />
-                                                    <span class="primary"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Steel Frames</td>
-                                        <td> 
-                                            <div class="checkbox">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" value="1" name="steel_frames" />
-                                                    <span class="primary"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Ceiling</td>
-                                        <td> 
-                                            <div class="checkbox">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" value="1" name="ceiling" />
-                                                    <span class="primary"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Masonry</td>
-                                        <td> 
-                                            <div class="checkbox">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" value="1" name="masonry" />
-                                                    <span class="primary"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Plumbing</td>
-                                        <td> 
-                                            <div class="checkbox">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" value="1" name="plumbing" />
-                                                    <span class="primary"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Windows</td>
-                                        <td> 
-                                            <div class="checkbox">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" value="1" name="windows" />
-                                                    <span class="primary"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>Labours</td>
-                                        <td> 
-                                            <div class="checkbox">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" value="1" name="labour" />
-                                                    <span class="primary"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>Transport</td>
-                                        <td> 
-                                            <div class="checkbox">
-                                                <label class="checkbox">
-                                                    <input type="checkbox" value="1" name="transport" />
-                                                    <span class="primary"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer">
-
-                        </div>
-                    </div>
-                </div>
+               
                     
         @if($data)
         <div class="col-md-12 mt-5">
@@ -428,7 +297,7 @@ input:checked + .slider:before {
             success:
             function(data)
             { 
-                swal('success', 'Service Status Updated', "");      
+                swal('success', 'Service Status Updated', "success");      
             }
         });
     }
