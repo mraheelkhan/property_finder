@@ -40,6 +40,7 @@ Route::get('/ads/{id}', 'ListingController@show')->name('SubmitShow');;
 Route::get('/submit/delete/{id}', 'ListingController@delete')->name('SubmitDelete')->middleware('auth');
 Route::get('/ads/activate/{id}', 'ListingController@activate')->name('SubmitActivate')->middleware('auth');
 Route::get('/ads/deactivate/{id}', 'ListingController@deactivate')->name('SubmitDeactivate')->middleware('auth');
+Route::post('/ad/update', 'ListingController@update')->name('SubmitUpdate');
 
 //============================================================
 //======================== ADMIN Routes ======================
