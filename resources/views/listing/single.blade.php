@@ -368,9 +368,9 @@
 									</div>
 									<div class="listing_list">
 										<ul>
-											<li>{{($data['contact1']) ? $data['contact1'] : $data->user->phone	}}</li>
+											<li>Contact : {{($data['contact1']) ? $data['contact1'] : $data->user->phone	}}</li>
 											<li>Posted on: {{$data['created_at']}}</li>
-											<li>Off plan</li>
+											
 										</ul>
 									</div>
 									<div class="prop_agent d-flex flex-row align-items-center justify-content-start">
@@ -415,7 +415,7 @@
 								</div>
 							</div>
 							
-							<div class="col-lg-12">
+							<div class="col-lg-6">
 								@if(Auth::check() && Auth::user()->id == $data->user_id)
 									@can('onlyAdmin')
 									<a class="btn btn-danger pull-right" href="{{route('SubmitDelete', $data['id'])}}">
@@ -425,6 +425,11 @@
 									<a href="{{route('SubmitDeactivate', $data->id)}}" class="btn btn-dark" title="Deactivate Now"><i class="fa fa-times-circle"></i></a>
 									@else
 									<a href="{{route('SubmitActivate', $data->id)}}" class="btn btn-info" title="Activate Now"><i class="fa fa-check-circle"></i></a>
+									@endif
+									@if($data->status == 'active')
+									<a href="#" class="btn btn-success" title="Edit Now" data-toggle="modal" data-target="#editModal">
+										<i class="fa fa-edit"></i>
+									</a>
 									@endif
 								@endif
 								<div class="listing_features">
@@ -517,6 +522,159 @@
 		</div>
 	</div>
 
-	
+	{{-- modal code goes here --}}
+	<div class="modal" id="editModal">
+		<div class="modal-dialog modal-lg">
+		  <div class="modal-content">
+		  
+			<!-- Modal Header -->
+			<div class="modal-header">
+			  <h4 class="modal-title">Edit Your Listing</h4>
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			
+			<!-- Modal body -->
+			<div class="modal-body">
+					<form action="{{route('SubmitUpdate')}}" method="POST" class=""  enctype="multipart/form-data">
+						<div class="pb-5 pt-5" >
+						<input type="hidden" value="{{$data->id}}" name="ad_id" id="ad_id">
+							<div class="row">
+								<div class="col-md-6 col-offset-md-3">
+								@if(Session::has('message'))
+									<p class="alert alert-success">{!! Session::get('message') !!}</p>
+								@endif
+								@if ($errors->any())
+								<div class="alert alert-danger">
+									<ul>
+										@foreach ($errors->all() as $error)
+											<li>{{ $error }}</li>
+										@endforeach
+									</ul>
+								</div>
+								  @endif
+								  </div>
+							  </div>
+							  <div class="row">
+								<div class="col-md-6">
+									@csrf
+									<h4 class="">General Details</h4>
+									<div class="form-group">
+										<label class="badge badge-primary">Enter Title</label> <label class="badge badge-danger">*</label>	
+									<input type="text" name="title" id="title" value="{{($data['title'] ? $data['title'] : 'No Title')	}}" class="form-control" placeholder="Enter Title for Your Ad" value="{{old('title')}}">
+									</div>
+									<hr>
+									<h4 class="">Address Details</h4>
+									<div class="form-group">
+										<label class="badge badge-primary">Street Name or Number</label>
+										<input type="text" name="street" value="{{$data['street_name']}}" id="street" class="form-control" placeholder="Enter Street Name or Number" value="{{old('street')}}">
+									</div>
+									<div class="form-group">
+										<label class="badge badge-primary">House Number</label>
+										<label class="badge badge-danger">*</label>
+										<input type="text" name="house" value="{{$data['house']}}" id="house" class="form-control" placeholder="Enter House Number" value="{{old('house')}}">
+									</div>
+									<div class="form-group">
+										<label class="badge badge-primary">Sector</label><label class="badge badge-danger">*</label>
+										<select name="listing_area_id" id="listing_area_id" class="form-control" value="{{old('listing_area_id')}}">
+											<option value="" selected disabled>Select Area/Sector</option>
+											@foreach($areas as $area)
+												<option value="{{$area->id}}">{{$area->area_name}} , {{$area->sector->sector_name}}</option>
+											@endforeach
+										</select>
+									</div>
+									<div class="form-group">
+										<label class="badge badge-primary">Type of Ad</label><label class="badge badge-danger">*</label>
+										<select name="ad_type" id="ad_type" class="form-control" value="{{old('ad_type')}}">
+											<option value="sale">Sale</option>
+											<option value="rent">Rent</option>
+										</select>
+									</div>
+									<hr>
+									<h4 class="">Pricing Details </h4>
+									<div class="form-group">
+										<label class="badge badge-primary">Price</label>
+										<label class="badge badge-danger">*</label>
+										<input type="text" name="price" value="{{$data->price}}" id="price" class="form-control" placeholder="Enter Price" value="{{old('price')}}">
+									</div>
+									<div class="form-group">
+										<label class="badge badge-primary">Pricing Type</label><label class="badge badge-danger">*</label>
+										<select name="pricing_type" id="pricing_type" class="form-control" value="{{old('pricing_type')}}">
+											<option value="1">Per Month</option>
+											<option value="2">Per Year</option>
+											<option value="3">Fixed Amount</option>
+										</select>
+									</div>
+									<hr>
+									<h4 class="">Contact Details </h4>
+									<div class="form-group">
+										<label class="badge badge-primary">Contact Number</label>
+										<input type="text" value="{{($data['contact1']) ? $data['contact1'] : $data->user->phone	}}" name="contact1" id="contact1" class="form-control" placeholder="Enter Contact Number" value="{{old('contact1')}}">
+									</div>
+									<div class="form-group">
+										<label class="badge badge-primary">Contact Number 2</label>
+										<input type="text" value="{{($data['contact2']) ? $data['contact2'] : $data->user->phone	}}" name="contact2" id="contact2" class="form-control" placeholder="Enter Contact Number 2" value="{{old('contact2')}}">
+									</div>
+								<button class="btn btn-primary">Submit Ad </button>
+								</div>
+		
+								<div class="col-md-6">
+									<h4 class="">Property Details</h4>
+									<div class="form-group">
+										<label class="badge badge-primary">Garages</label>
+										<input type="text" name="garages" value="{{($data['garages'] ? $data['garages'] : 'NAN')	}}" id="garages" class="form-control" placeholder="Enter Number of Garages" value="{{old('garages')}}">
+									</div>
+									<div class="form-group">
+										<label class="badge badge-primary">Bedrooms</label><label class="badge badge-danger">*</label>
+										<input type="text" value="{{($data['bedrooms'] ? $data['bedrooms'] : 'NAN')	}}" name="bedrooms" id="bedrooms" class="form-control" placeholder="Enter Number of Bedrooms" value="{{old('bedrooms')}}">
+									</div>
+									<div class="form-group">
+										<label class="badge badge-primary">Siderooms</label>
+										<input type="text" value="{{($data['siderooms'] ? $data['siderooms'] : 'NAN')	}}" name="siderooms" id="siderooms" class="form-control" placeholder="Enter Number of Siderooms" value="{{old('siderooms')}}">
+									</div>
+									<div class="form-group">
+										<label class="badge badge-primary">Washrooms</label><label class="badge badge-danger">*</label>
+										<input type="text" value="{{($data['bathroom'] ? $data['bathroom'] : 'NAN')	}}" name="washrooms" id="washrooms" class="form-control" placeholder="Enter Number of Washrooms" value="{{old('washrooms')}}">
+									</div>
+									<div class="form-group">
+										<label class="badge badge-primary">Floors</label>
+										<input type="text" value="{{($data['floors'] ? $data['floors'] : 'NAN')	}}" name="floors" id="floors" class="form-control" placeholder="Enter Number of Floors" value="{{old('floors')}}">
+									</div>
+									<div class="form-group">
+										<label class="badge badge-primary">Kitchens</label>
+										<input type="text" value="{{($data['kitchens'] ? $data['kitchens'] : 'NAN')	}}" name="kitchens" id="kitchens" class="form-control" placeholder="Enter Number of Kitchens" value="{{old('kitchens')}}">
+									</div>
+									<hr>
+									<div class="form-group">
+										<label class="badge badge-primary">Featured Image</label>
+										<input type="file" name="featured_image" id="featured_image" class="form-control">
+									</div>
+									<div class="form-group">
+										<label class="badge badge-primary">Comment</label>
+										<textarea class="form-control"  rows="5" name="comment" id="comment" class="form-control">
+											{{old('comment')}}
+										</textarea>
+									</div>
+		
+									<div class="form-group">
+										<label class="badge badge-primary"> Description </label>
+										<input type="text" class="form-control" name="description" id="description" value="{{old('description')}}">
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						<div class="modal-footer">
+								<button type="submit" class="btn btn-success" >Update</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							  </div>
+					</form>
+				</div>
+			
+			<!-- Modal footer -->
+			
+			
+		  </div>
+		</div>
+	  </div>
 
 @endsection
