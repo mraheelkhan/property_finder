@@ -55,7 +55,7 @@ class ServiceProviderController extends Controller
                 $service->transport = $status;
                 break;
             default:
-                return "nothing is changed";
+                return "nothing is changed.";
                 break;
         }
         $service->update();
