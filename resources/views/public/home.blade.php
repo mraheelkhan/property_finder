@@ -53,7 +53,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<div class="search_container">
+					{{-- <div class="search_container">
 						<div class="search_title">Find your home</div>
 						<div class="search_form_container">
 							<form action="#" class="search_form" id="search_form">
@@ -67,7 +67,7 @@
 								</div>
 							</form>
 						</div>
-					</div>
+					</div> --}}
 				</div>
 			</div>
 		</div>

@@ -415,7 +415,7 @@
 								</div>
 							</div>
 							
-							<div class="col-lg-12">
+							<div class="col-lg-6">
 								@if(Auth::check() && Auth::user()->id == $data->user_id)
 									@can('onlyAdmin')
 									<a class="btn btn-danger pull-right" href="{{route('SubmitDelete', $data['id'])}}">

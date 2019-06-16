@@ -26,7 +26,7 @@ class CityController extends Controller
         $user = User::class;
         if(Gate::allows('onlyAdmin', $user)){
             $cities = City::all();
-            return view('cities.create', compact('cities'));  
+            return view('cities.create', compact('cities'))->with('city');  
         } else{
             return view('forbidden');
         }

@@ -92,7 +92,7 @@ class ListingController extends Controller
     // show single listing 
     public function show($id){
         $listing = Listing::findorFail($id);
-        $comments = Comment::where('listing_id', $id)->with('user')->where('status', 'active')->get();
+        $comments = Comment::where('listing_id', $id)->with('user')->where('status', 'active')->orderBy('id', 'desc')->get();
         
         return view('listing.single')->with('data', $listing)->with('comments', $comments);
     }

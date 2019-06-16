@@ -94,18 +94,17 @@
 					@foreach($sectors as $sector)
 				  <tr>
 					<td>
-						{{$sector->sector_name}}
+						{{ $sector->sector_name }}
 					</td>
 					<td>
-						{{$sector->city_id}}
+						{{ $sector->city->city_name }}
 					</td>
 					<td>
 						@if($sector->status == "active")
 							<label class="badge badge-success">{{$sector->status}}</label>
 						@else 
 							<label class="badge badge-danger">{{$sector->status}}</label>
-						@endif
-							
+						@endif	
 					</td>
 					<td class="text-primary">
 						<a href="{{route('SectorDelete', $sector->id)}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
