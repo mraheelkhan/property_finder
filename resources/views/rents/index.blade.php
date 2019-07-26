@@ -175,7 +175,7 @@
 					</div>
 					@endforeach
 				</div>
-				<div class="col-lg-3">
+				{{-- <div class="col-lg-3">
 					<div class="listing">
 						<div class="listing_image">
 								<div class="card" style="width: 18rem;">
@@ -212,7 +212,7 @@
 						</div>
 						
 					</div>
-				</div>
+				</div> --}}
 			</div>
 
 			

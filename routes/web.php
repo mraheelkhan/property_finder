@@ -91,6 +91,13 @@ Route::get('/admin/users/delete/{id}', 'AdminController@delete')->name('AdminDel
 // Comment routes
 Route::post('/postcomment', 'CommentController@store')->name('PostComment')->middleware('auth');
 
+//profile 
+Route::get('/sliders', 'HomeController@slideImages')->name('Slider')->middleware('auth');
+Route::post('/slider/update', 'HomeController@storeSlideImages')->name('SliderUpdate')->middleware('auth');
+Route::get('/slider/delete/{id}', 'HomeController@delete')->name('SlideDelete')->middleware('auth');
+Route::get('/slider/activate/{id}', 'HomeController@activate')->name('SlideActivate')->middleware('auth');
+Route::get('/slider/deactivate/{id}', 'HomeController@deactivate')->name('SlideDeactivate')->middleware('auth');
+
 //  AJAX routes 
 Route::get('/city/getsectorslist/{id}', 'CityController@getSectorsListByCityId')->name('GetSectorsList')->middleware('auth');
 

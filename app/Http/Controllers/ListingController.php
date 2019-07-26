@@ -56,12 +56,12 @@ class ListingController extends Controller
             "description" => 'max:1000',
             "featured_image" => 'required|mimes:jpeg,jpg,png'
         ]);
-         if ($request->hasFile('featured_image')) { 
-            $image = $request->file('featured_image'); 
-            $image_name = time().'_'.$image->getClientOriginalName(); 
-            $destinationPath = public_path().'/images'; 
-            $upload = $image->move($destinationPath, $image_name); 
-         }
+        if ($request->hasFile('featured_image')) { 
+        $image = $request->file('featured_image'); 
+        $image_name = time().'_'.$image->getClientOriginalName(); 
+        $destinationPath = public_path().'/images'; 
+        $upload = $image->move($destinationPath, $image_name); 
+        }
         $listing->user_id = $userid;
         $listing->title = $request->title;
         $listing->description = $request->description;

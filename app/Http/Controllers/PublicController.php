@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Listing;
+use App\Slider;
 class PublicController extends Controller
 {
     public function index(){
-    	return view('public.home');
+        $slides = Slider::where('status', 'active')->get();
+        $listings = Listing::where('status', 'active')->with('user')->with('area')->get();
+        return view('public.home', compact('listings', 'slides'));
     }
 
     public function renting(){
@@ -20,5 +23,6 @@ class PublicController extends Controller
         $sales = Listing::where('status', 'active')->where('type', 'sale')->with('user')->with('area')->get();
         return view('sales.index', compact('sales', 'salesfeatured'));
     }
+
 
 }

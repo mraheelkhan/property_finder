@@ -42,6 +42,12 @@
             <p>Cities</p>
           </a>
         </li>
+        <li class="nav-item @if(Request::route()->getName() == 'Slider') active @endif ">
+        <a class="nav-link" href="{{route('Slider')}}">
+            <i class="material-icons">add_location</i>
+            <p>Slider</p>
+          </a>
+        </li>
         <li class="nav-item @if(Request::route()->getName() == 'Profile') active @endif ">
           <a class="nav-link" href="{{route('Profile')}}">
             <i class="material-icons">person</i>
