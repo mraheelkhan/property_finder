@@ -21,7 +21,7 @@
 <div class="col-md-12">
 	<div class="card">
 		<div class="card-header card-header-primary">
-		<h4 class="card-title ">Add New City</h4>
+		<h4 class="card-title ">Add New Slide</h4>
 		{{-- <p class="card-category"> Here is a subtitle for this table</p> --}}
 		</div>
 		<div class="card-body">
@@ -60,7 +60,7 @@
 <div class="col-md-12 mt-5">
 		<div class="card">
 		  <div class="card-header card-header-primary">
-			<h4 class="card-title ">City List</h4>
+			<h4 class="card-title ">Slides List</h4>
 			<p class="card-category"> </p>
 		  </div>
 		  <div class="card-body">
@@ -69,7 +69,7 @@
 				<thead class=" text-primary">
 				 
 				  <th>
-					City Name
+					Picture
 				  </th>
 				  <th>
 					Status
