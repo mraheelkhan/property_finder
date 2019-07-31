@@ -31,7 +31,7 @@ class ListingController extends Controller
     	return view('listing.create')->with('areas', $areas);
     }
 
-     //store the new listing
+    //store the new listing
     public function store(Request $request){
         $userid = Auth::user()->id;
         $listing = new Listing;
@@ -154,7 +154,7 @@ class ListingController extends Controller
         $user = User::class;
         if(Gate::allows('onlyAdmin', $user)){
             $lists = Listing::all();
-            return view('listing.listinglist', compact('lists'));
+            return view('listing.listingList', compact('lists'));
         } 
         return view('forbidden');
     }

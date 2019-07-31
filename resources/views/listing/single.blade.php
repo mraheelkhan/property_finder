@@ -453,66 +453,80 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-6">
 					{{-- comment section code started here  --}}
-	<div class="mt-5 mb-5">
-		<div class="col-md-8 col-md-offset-2 col-sm-12">
-			<div class="comment-wrapper">
-				<div class="card card-info">
-					<div class="card-header">
-						Comment Section
-						@if(Session::has('message'))
-							<p class="alert alert-success">{!! Session::get('message') !!}</p>
-						@endif
-						@if ($errors->any())
-	                    <div class="alert alert-danger">
-	                        <ul>
-	                            @foreach ($errors->all() as $error)
-	                                <li>{{ $error }}</li>
-	                            @endforeach
-	                        </ul>
-	                    </div>
-	                  	@endif	
-					</div>
-					<div class="card-body">
-					<form class="" action="{{ route('PostComment') }}" method="post">
-						@csrf
-						<input type="hidden" name="listing_id" value=" {{ $data['id'] }} "/>
-							<textarea name="comment_body" class="form-control" placeholder="write a comment..." rows="3"></textarea>
-							<br>
-							<button type="submit" class="btn btn-info pull-right">Post</button>
-						</form>
-						<div class="clearfix"></div>
-						<hr>
-						<ul class="media-list">
-							<small class="mt-2 mb-2">Latest Comments First</></small>
-							@foreach($comments as $comment)
-							
-							<li class="media">
-								<a href="#" class="pull-left">
-									<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-								</a>
-								<div class="media-body">
-									<span class="text-muted pull-right">
-										<small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
-									</span>
-								<strong class="text-success">{{ $comment->user->first_name ." " . $comment->user->last_name }} | {{ "@" . $comment->user->username }}</strong>
-									<p>
-										{{ $comment->comment_body }}
-									</p>
+					<div class="mt-5 mb-5">
+						<div class="col-md-12">
+							<div class="comment-wrapper">
+								<div class="card card-info">
+									<div class="card-header">
+										Comment Section
+										@if(Session::has('message'))
+											<p class="alert alert-success">{!! Session::get('message') !!}</p>
+										@endif
+										@if ($errors->any())
+										<div class="alert alert-danger">
+											<ul>
+												@foreach ($errors->all() as $error)
+													<li>{{ $error }}</li>
+												@endforeach
+											</ul>
+										</div>
+										@endif	
+									</div>
+									<div class="card-body">
+									<form class="" action="{{ route('PostComment') }}" method="post">
+										@csrf
+										<input type="hidden" name="listing_id" value=" {{ $data['id'] }} "/>
+											<textarea name="comment_body" class="form-control" placeholder="write a comment..." rows="3"></textarea>
+											<br>
+											<button type="submit" class="btn btn-info pull-right">Post</button>
+										</form>
+										<div class="clearfix"></div>
+										<hr>
+										<ul class="media-list">
+											<small class="mt-2 mb-2">Latest Comments First</></small>
+											@foreach($comments as $comment)
+											
+											<li class="media">
+												<a href="#" class="pull-left">
+													<img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+												</a>
+												<div class="media-body">
+													<span class="text-muted pull-right">
+														<small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
+													</span>
+												<strong class="text-success">{{ $comment->user->first_name ." " . $comment->user->last_name }} | {{ "@" . $comment->user->username }}</strong>
+													<p>
+														{{ $comment->comment_body }}
+													</p>
+												</div>
+											</li>
+											@endforeach
+											
+										</ul>
+									</div>
 								</div>
-							</li>
-							@endforeach
-							
-						</ul>
+							</div>
+					
+						</div>
 					</div>
-				</div>
-			</div>
-	
-		</div>
-	</div>
 	{{-- comment section end here --}}
 				</div>
+				{{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWgGKr_s77IHdQGsgGwcXOc8Sp0csrWa0&callback=initMap" type="text/javascript"></script> --}}
+				
+				<div class="col-md-6">
+
+						<div id="map" style="width:100%;height:350px;">
+						<?php 
+							$array=[
+								'lat'=>$data->lat, 
+								'lng'=>$data->lng
+							];
+							$locations =    json_encode($array);
+						?>
+				</div>
+				
 			</div>
 		</div>
 	</div>

@@ -19,6 +19,8 @@
     @endif
     @if(Request::is('submit'))
     @endif
+
+   
     <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
@@ -52,7 +54,8 @@
 <script src="{{asset('plugins/easing/easing.js')}}"></script>
 <script src="{{asset('plugins/progressbar/progressbar.min.js')}}"></script>
 <script src="{{asset('plugins/parallax-js-master/parallax.min.js')}}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
-<script src="{{asset('js/custom.js')}}"></script>
+
+
+
 </body>
 </html>

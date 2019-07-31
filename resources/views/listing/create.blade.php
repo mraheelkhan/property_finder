@@ -188,9 +188,55 @@
 								<label class="badge badge-primary"> Description </label>
 								<input type="text" class="form-control" name="description" id="description" value="{{old('description')}}">
 							</div>
+							<input type="text" disabled id="lat" placeholder="LAT">
+							<input type="text" disabled id="lng" placeholder="LNG">
+						</div>
+						<div class="col-md-12"  style="height: 400px;">
+								<div id="map"></div>
 						</div>
 					</div>
+
 					
+					<script>
+						function initMap() {
+							var lat1 = document.getElementById('lat').value;
+							var lng1 = document.getElementById('lng').value;
+							var myLatLng = {lat: 33.64, lng: 73.044};
+							
+
+							var map = new google.maps.Map(document.getElementById('map'), {
+								zoom: 4,
+								center: myLatLng
+							});
+
+							var marker = new google.maps.Marker({
+							// position: myLatLng,
+								map: map,
+								title: 'Hello World!'
+							});
+							google.maps.event.addListener(map, 'click', function(event) {
+								
+								alert(event.latLng.lat() + ", " + event.latLng.lng());
+								document.getElementById('lat').value= event.latLng.lat();
+								document.getElementById('lng').value= event.latLng.lng(); 
+							});
+
+							google.maps.event.addListener(map, 'click', function(event) {
+								placeMarker(event.latLng);
+							});
+
+								function placeMarker(location) {
+									var marker = new google.maps.Marker({
+										position: location, 
+										map: map
+									});
+								}
+							}
+					</script>
+					{{-- <script async defer
+						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgTgbxRK69p6pWShajYbfteTNKVRWUrRc&callback=initMap">
+					</script> --}}
+					{{-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1ZDTKLqTHX1_uNAiL-SUWl5vP-eq7YWk&callback=initMap"> --}}
 				</div>
 			</form>
 		</div>

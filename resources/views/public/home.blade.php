@@ -32,7 +32,7 @@
 			 
 		</div>
 	</div>
-
+	
 	<!-- Search -->
 
 	<div class="search">
@@ -62,6 +62,11 @@
 	<!-- Featured: available for Rent -->
 	<div class="featured">
 		<div class="container">
+				<div class="col-md-12">
+					@if(Session::has('message'))
+						<p class="alert alert-danger">{!! Session::get('message') !!}</p>
+					@endif
+				</div>	
 			<div class="row">
 				<div class="col">
 					<div class="section_title_container text-center">

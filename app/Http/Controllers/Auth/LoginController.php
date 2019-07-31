@@ -35,7 +35,9 @@ class LoginController extends Controller
 
         if($status != 'active'){
             Auth::logout();
-            Session::flash('message', '<script>swal.fire("Your not Authorize","Your Account is not yet Activated, Please contact your Administrator","error");</script>'); 
+            Session::flash('message', 'Your new Sector is added successfully. <script>swal.firePP("success","Added","Your Sector is Added Successfully");</script>'); 
+        
+            Session::flash('message', 'Your Account is not yet Activated, Please contact your Administrator<script>swal.firePP("Your not Authorize","Your Account is not yet Activated, Please contact your Administrator","error"); Your Account is not yet Activated, Please contact your Administrator</script>'); 
             return '/'; 
         }
         // Check user role
