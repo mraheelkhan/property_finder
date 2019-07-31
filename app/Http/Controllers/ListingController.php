@@ -53,6 +53,8 @@ class ListingController extends Controller
             "floors" => 'nullable|numeric',
             "kitchens" => 'nullable|numeric',
             "comment" => 'max:150',
+            "lat" => 'required',
+            "lng" => 'required',
             "description" => 'max:1000',
             "featured_image" => 'required|mimes:jpeg,jpg,png'
         ]);
@@ -81,6 +83,8 @@ class ListingController extends Controller
         $listing->kitchens = $request->kitchens;
         $listing->featured_image = $image_name;
         $listing->comment = $request->comment;
+        $listing->lat = $request->lat;
+        $listing->lng = $request->lng;
         $listing->status = 'active';
         $listing->save();
         Session::flash('message', 'Your Ad is submitted. <script>swal("success","Submitted","Your Ad is submitted Successfully");</script>'); 

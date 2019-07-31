@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html> --}}
 <html lang="en">
 <head>
     <title>@yield('title')</title>
@@ -19,8 +19,6 @@
     @endif
     @if(Request::is('submit'))
     @endif
-
-   
     <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
@@ -54,7 +52,8 @@
 <script src="{{asset('plugins/easing/easing.js')}}"></script>
 <script src="{{asset('plugins/progressbar/progressbar.min.js')}}"></script>
 <script src="{{asset('plugins/parallax-js-master/parallax.min.js')}}"></script>
-
+<script src="{{asset('js/custom.js')}}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWgGKr_s77IHdQGsgGwcXOc8Sp0csrWa0&callback=initMap"> </script>
 
 
 </body>

@@ -68,7 +68,7 @@
                     <a href="{{url('/sales')}}">Sales</a>
                 </li>
                 <li class="@if(Request::route()->getName() == 'SubmitedList') active @endif">
-                    <a href="{{ url('/submited') }}">My List</a>
+                    <a href="{{ url('/submited') }}">My</a>
                 </li>
                 <li class="">
                     <a href="{{ url('/submit/create') }}">Submit</a>

@@ -525,6 +525,28 @@
 							];
 							$locations =    json_encode($array);
 						?>
+
+<script>
+		var locations = <?php echo $locations; ?>;
+		console.log(locations.length);      
+		function initMap() {
+		var myLatLng = {lat: locations.lat, lng: locations.lng};
+		
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 12,
+			center: myLatLng
+		});
+			var marker = new google.maps.Marker({
+			position : {
+				lat : locations.lat,
+				lng : locations.lng
+			},
+			map: map,
+			title: 'Hello World!'
+			});
+		
+		}
+	   </script>
 				</div>
 				
 			</div>

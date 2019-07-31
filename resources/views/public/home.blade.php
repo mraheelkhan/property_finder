@@ -15,6 +15,7 @@
 			 			<div class="container">
 			 				<div class="row">
 			 					<div class="col">
+									 
 			 						{{-- <div class="home_content">
 			 							<div class="home_title"><h1>Fazle-Haq Road, Street 24, House 18, Islamabad</h1></div>
 			 							<div class="home_price_tag">PKR 482 900</div>

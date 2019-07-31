@@ -6,9 +6,9 @@
 					<!-- Footer Column -->
 					<div class="col-xl-3 col-lg-6 footer_col">
 						<div class="footer_about">
-							<div class="footer_logo"><a href="#">Property<span>FYP</span></a></div>
+							<div class="footer_logo"><a href="#">Property<span>Consultants</span></a></div>
 							<div class="footer_text">
-								<p>Property FYP is online property listing web application where you can list your property by providing the details of your house, office and flats.</p>
+								<p>Property Consultants is online property listing web application where you can list your property by providing the details of your house, office and flats.</p>
 							</div>
 							<div class="social">
 								<ul class="d-flex flex-row align-items-center justify-content-start">
@@ -42,7 +42,7 @@
 									<!-- Email -->
 									<li class="d-flex flex-row align-items-center justify-content-start">
 										<div><img src="images/envelope.svg" alt=""></div>
-										<span>support@propertyfyp.com</span>
+										<span>support@propertyConsultants.com</span>
 									</li>
 								</ul>
 							</div>

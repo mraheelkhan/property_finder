@@ -181,15 +181,16 @@
 							</div>
 							<div class="form-group">
 								<label class="badge badge-primary">Comment</label>
-								<textarea class="form-control" rows="5" name="comment" id="comment" class="form-control">{{old('comment')}}</textarea>
+								<input type="text" class="form-control" name="comment" id="comment" value="{{old('description')}}">
 							</div>
 
 							<div class="form-group">
 								<label class="badge badge-primary"> Description </label>
-								<input type="text" class="form-control" name="description" id="description" value="{{old('description')}}">
+								<textarea class="form-control" rows="5" name="description" id="description" class="form-control">{{old('comment')}}</textarea>
+							{{-- <input type="text" class="form-control" name="description" id="description" value="{{old('description')}}"> --}}
 							</div>
-							<input type="text" disabled id="lat" placeholder="LAT">
-							<input type="text" disabled id="lng" placeholder="LNG">
+							<input type="text" readonly id="lat" name="lat" placeholder="LAT">
+							<input type="text" readonly id="lng" name="lng" placeholder="LNG">
 						</div>
 						<div class="col-md-12"  style="height: 400px;">
 								<div id="map"></div>
@@ -205,7 +206,7 @@
 							
 
 							var map = new google.maps.Map(document.getElementById('map'), {
-								zoom: 4,
+								zoom: 13,
 								center: myLatLng
 							});
 
@@ -216,7 +217,7 @@
 							});
 							google.maps.event.addListener(map, 'click', function(event) {
 								
-								alert(event.latLng.lat() + ", " + event.latLng.lng());
+								// alert(event.latLng.lat() + ", " + event.latLng.lng());
 								document.getElementById('lat').value= event.latLng.lat();
 								document.getElementById('lng').value= event.latLng.lng(); 
 							});
