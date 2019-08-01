@@ -496,7 +496,7 @@
 													<span class="text-muted pull-right">
 														<small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
 													</span>
-												<strong class="text-success">{{ $comment->user->first_name ." " . $comment->user->last_name }} | {{ "@" . $comment->user->username }}</strong>
+												<strong class="text-success"> <a href="{{ route('ServiceProviderProfile', $comment->user->id ) }}"> {{ $comment->user->first_name ." " . $comment->user->last_name }} | {{ "@" . $comment->user->username }} </a></strong>
 													<p>
 														{{ $comment->comment_body }}
 													</p>

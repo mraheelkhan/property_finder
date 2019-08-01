@@ -87,6 +87,7 @@ Route::post('/admin/users/add', 'AdminController@create')->name('AddNewUser')->m
 Route::get('/admin/users/activate/{id}', 'AdminController@activate')->name('AdminActivate')->middleware('auth');
 Route::get('/admin/users/deactivate/{id}', 'AdminController@deactivate')->name('AdminDeactivate')->middleware('auth');
 Route::get('/admin/users/delete/{id}', 'AdminController@delete')->name('AdminDelete')->middleware('auth');
+Route::get('/admin/users/sp/{id}', 'PublicController@user_profile')->name('ServiceProviderProfile');
 
 // Comment routes
 Route::post('/postcomment', 'CommentController@store')->name('PostComment')->middleware('auth');

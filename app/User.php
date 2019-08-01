@@ -36,4 +36,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function service(){
+        return $this->belongsTo('App\ServiceProvider', 'user_id', 'id')->withDefault();
+    }
 }
